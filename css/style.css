@@ -1,0 +1,1009 @@
+/* ==========================================================================
+   A Heartfelt Apology - Translucent Editorial Pink Envelope Experience
+   Pure Letter Reading Experience & 'love love love' Ambient Calligraphy
+   ========================================================================== */
+
+:root {
+  /* Default Theme: Romantic Blush Pink Vellum */
+  --bg-primary: #f8f2eb;
+  --bg-secondary: #fdf8f4;
+  --text-dark: #2c2523;
+  --text-muted: #72655c;
+
+  /* Translucent Pink Vellum Palette */
+  --env-vellum-base: rgba(224, 150, 172, 0.65);
+  --env-vellum-dark: rgba(198, 120, 144, 0.78);
+  --env-vellum-light: rgba(246, 182, 200, 0.62);
+  --env-vellum-deep: rgba(172, 94, 118, 0.85);
+  --env-vellum-flap: rgba(215, 140, 162, 0.72);
+  --env-blur: blur(5px);
+  --env-shadow: rgba(70, 30, 45, 0.26);
+
+  --paper-cream: #fffdf9;
+  --paper-border: #ede1d1;
+  --paper-text: #2d2623;
+  --gold-accent: #c59b58;
+
+  --vellum-green-bg: rgba(182, 206, 160, 0.75);
+  --vellum-green-border: rgba(255, 255, 255, 0.45);
+  --vellum-green-text: #1b331c;
+
+  --watermark-color: rgba(60, 45, 35, 0.22);
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-script: 'Alex Brush', 'Pinyon Script', cursive;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-title: 'Cinzel', serif;
+
+  /* Enlarged Dimensions */
+  --env-width: 630px;
+  --env-height: 400px;
+}
+
+body.theme-blush-pink {
+  --env-vellum-base: rgba(224, 150, 172, 0.65);
+  --env-vellum-dark: rgba(198, 120, 144, 0.78);
+  --env-vellum-light: rgba(246, 182, 200, 0.62);
+  --env-vellum-deep: rgba(172, 94, 118, 0.85);
+  --env-vellum-flap: rgba(215, 140, 162, 0.72);
+  --env-shadow: rgba(70, 30, 45, 0.26);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-dark);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.85) 0%, transparent 65%),
+    radial-gradient(circle at 12% 85%, rgba(235, 215, 222, 0.45) 0%, transparent 50%),
+    radial-gradient(circle at 88% 75%, rgba(230, 210, 215, 0.45) 0%, transparent 50%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Background Calligraphy Watermark ('love love love') */
+.bg-watermark-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bg-watermark {
+  font-family: var(--font-script);
+  font-size: clamp(5rem, 16vw, 14rem);
+  white-space: nowrap;
+  user-select: none;
+  line-height: 0.9;
+  letter-spacing: 3px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--watermark-color);
+  opacity: 0.85;
+  transition: all 0.5s ease;
+}
+
+.bg-watermark-top {
+  align-self: center;
+  transform: translate(0, -6%) rotate(-4deg);
+}
+
+.bg-watermark-bottom {
+  align-self: center;
+  transform: translate(4%, 14%) rotate(-3deg);
+}
+
+.bg-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78vw;
+  height: 78vh;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(248,242,235,0) 70%);
+  pointer-events: none;
+}
+
+.ambient-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Scroll Progress Track */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 999;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-accent), var(--env-vellum-base));
+  transition: width 0.1s linear;
+}
+
+/* Audio Button */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 100, 85, 0.25);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.pill-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(120, 100, 85, 0.4);
+}
+
+.pill-btn:active {
+  transform: translateY(0);
+}
+
+.audio-control-container {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  z-index: 100;
+}
+
+.audio-btn.playing {
+  background: #ffffff;
+  border-color: rgba(224, 150, 172, 0.7);
+  box-shadow: 0 4px 18px rgba(224, 150, 172, 0.38);
+}
+
+.audio-btn.playing #audioIcon {
+  display: inline-block;
+  animation: musicIconPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes musicIconPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.22) rotate(14deg); }
+}
+
+/* Viewport Stage */
+.viewport-stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.envelope-scene,
+.interaction-hint {
+  pointer-events: auto;
+}
+
+/* Interaction Hint */
+.interaction-hint {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  user-select: none;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.interaction-hint.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.hint-mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid var(--text-muted);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.hint-wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--text-dark);
+  border-radius: 2px;
+  animation: mouseWheelMove 1.6s infinite ease-in-out;
+}
+
+@keyframes mouseWheelMove {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+.hint-text {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* 3D Envelope Scene */
+.envelope-scene {
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.envelope-box {
+  position: relative;
+  width: var(--env-width);
+  height: var(--env-height);
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 25px 45px var(--env-shadow));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   1. Translucent Envelope Back Wall
+   ========================================================================== */
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--env-vellum-base) 0%, var(--env-vellum-dark) 100%);
+  backdrop-filter: var(--env-blur);
+  -webkit-backdrop-filter: var(--env-blur);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: inset 0 0 45px rgba(70, 30, 45, 0.2);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.env-interior-shading {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 35%, rgba(255,255,255,0.14) 0%, rgba(0,0,0,0.3) 100%);
+}
+
+/* ==========================================================================
+   2. Inside Pocket Items
+   clip-path strictly clips any bottom extension
+   ========================================================================== */
+.env-items-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  clip-path: inset(-420px 0px 0px 0px);
+}
+
+.tucked-item {
+  position: absolute;
+  pointer-events: auto;
+  will-change: transform, opacity;
+}
+
+/* Item A: Lace Heart Doily */
+.lace-doily {
+  width: 500px;
+  height: 430px;
+  left: calc(50% - 250px);
+  bottom: 0px;
+  z-index: 2;
+  transform: translate3d(0, 0px, 0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.1));
+}
+
+.lace-doily img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Item B: Green Translucent Vellum Note */
+.vellum-note {
+  width: 280px;
+  left: 24px;
+  bottom: 15px;
+  z-index: 4;
+  transform: translate3d(0, 0px, 0) rotate(-11deg);
+  opacity: 0;
+  transform-origin: center bottom;
+}
+
+.vellum-glass {
+  background: var(--vellum-green-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--vellum-green-border);
+  border-radius: 6px;
+  padding: 15px 18px;
+  box-shadow: 0 10px 22px rgba(25, 45, 20, 0.16);
+  color: var(--vellum-green-text);
+}
+
+.vellum-header {
+  border-bottom: 1px solid rgba(27, 51, 28, 0.2);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vellum-contact {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.vellum-handle {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  opacity: 0.8;
+}
+
+.vellum-body p {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.vellum-footer {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.vellum-stamp {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(27, 51, 28, 0.15);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Item C: Polaroid Photo Card */
+.polaroid-card {
+  width: 220px;
+  right: 28px;
+  bottom: 20px;
+  z-index: 3;
+  transform: translate3d(0, 0px, 0) rotate(8deg);
+  opacity: 0;
+  transform-origin: center bottom;
+}
+
+.polaroid-wrapper {
+  background: #ffffff;
+  padding: 10px 10px 15px 10px;
+  border-radius: 3px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.polaroid-clip {
+  position: absolute;
+  top: -8px;
+  right: 22px;
+  width: 14px;
+  height: 22px;
+  border: 2px solid #d4af37;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.polaroid-inner {
+  width: 100%;
+  height: 175px;
+  overflow: hidden;
+  background: #222;
+  border-radius: 2px;
+}
+
+.polaroid-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-caption {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 8px;
+  color: #3b312b;
+}
+
+/* ==========================================================================
+   Item D: The Peeking Letter Card (Click directly to open full reader)
+   ========================================================================== */
+.half-letter-card {
+  width: 500px;
+  height: 270px;
+  left: calc(50% - 250px);
+  bottom: 35px;
+  z-index: 5;
+  transform: translate3d(0, 0px, 0);
+  opacity: 0;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease;
+}
+
+.half-letter-card:hover .half-letter-inner {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(35, 28, 22, 0.24);
+}
+
+.half-letter-inner {
+  width: 100%;
+  height: 100%;
+  background-color: var(--paper-cream);
+  background-image: 
+    linear-gradient(rgba(240, 230, 215, 0.2) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(252, 247, 238, 0.95) 100%);
+  background-size: 100% 28px, auto;
+  border-radius: 6px;
+  border: 1px solid var(--paper-border);
+  box-shadow: 0 12px 30px rgba(35, 28, 22, 0.16);
+  padding: 24px 30px 20px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.paper-deckle-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  opacity: 0.7;
+}
+
+.half-letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(197, 155, 88, 0.3);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.half-badge {
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+.half-date {
+  font-family: var(--font-editorial);
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.half-salutation {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--paper-text);
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+.half-preview-text {
+  font-family: var(--font-editorial);
+  font-size: 1.05rem;
+  line-height: 1.52;
+  color: #38302c;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.click-unfold-pill {
+  margin-top: auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fffdf8, #f8f1e5);
+  border: 1px solid rgba(197, 155, 88, 0.5);
+  box-shadow: 0 4px 12px rgba(197, 155, 88, 0.2);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  animation: pulseGlow 2.4s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 12px rgba(197, 155, 88, 0.2); }
+  50% { transform: scale(1.04); box-shadow: 0 6px 18px rgba(197, 155, 88, 0.35); }
+}
+
+/* ==========================================================================
+   3. Front Pocket (Translucent Pink Vellum Overlaps)
+   ========================================================================== */
+.env-front-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.pocket-fold {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: var(--env-blur);
+  -webkit-backdrop-filter: var(--env-blur);
+  pointer-events: none;
+}
+
+.pocket-left {
+  clip-path: polygon(0% 0%, 54% 52%, 0% 100%);
+  background: linear-gradient(135deg, var(--env-vellum-base) 0%, var(--env-vellum-dark) 100%);
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+  filter: drop-shadow(4px 0 6px rgba(0,0,0,0.06));
+}
+
+.pocket-right {
+  clip-path: polygon(100% 0%, 46% 52%, 100% 100%);
+  background: linear-gradient(225deg, var(--env-vellum-base) 0%, var(--env-vellum-dark) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.45);
+  filter: drop-shadow(-4px 0 6px rgba(0,0,0,0.06));
+}
+
+.pocket-bottom {
+  clip-path: polygon(0% 100%, 50% 42%, 100% 100%);
+  background: linear-gradient(0deg, var(--env-vellum-light) 0%, var(--env-vellum-base) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  filter: drop-shadow(0 -5px 8px rgba(0,0,0,0.1));
+}
+
+/* ==========================================================================
+   4. Top Envelope Flap
+   ========================================================================== */
+.env-top-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 215px;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+  will-change: transform;
+}
+
+.flap-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.flap-triangle-shape {
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  background: linear-gradient(180deg, var(--env-vellum-flap) 0%, var(--env-vellum-dark) 100%);
+  backdrop-filter: var(--env-blur);
+  -webkit-backdrop-filter: var(--env-blur);
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  filter: drop-shadow(0 8px 14px rgba(60, 25, 40, 0.18));
+}
+
+.wax-seal-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 74px;
+  height: 74px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wax-seal-wrapper:hover {
+  transform: translate(-50%, 50%) scale(1.08);
+}
+
+.wax-seal-img {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+.wax-seal-text {
+  position: absolute;
+  bottom: -18px;
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  color: var(--text-dark);
+  font-weight: 700;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   5. Pink Orchid Blossom (Corner Anchored)
+   ========================================================================== */
+.env-orchid {
+  position: absolute;
+  bottom: -24px;
+  left: -14px;
+  width: 175px;
+  height: 165px;
+  z-index: 28;
+  transform: rotate(-10deg);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
+}
+
+.env-orchid img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Tall Scroll Track */
+.scroll-track {
+  height: 380vh;
+  width: 100%;
+  pointer-events: none;
+  position: relative;
+}
+
+/* ==========================================================================
+   SEPARATE FULL LETTER MODAL (Pure & Heartfelt)
+   ========================================================================== */
+.letter-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 20, 16, 0.68);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.letter-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.letter-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  transform: translateY(25px) scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-modal-backdrop.open .letter-modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.letter-modal-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(160, 130, 100, 0.3);
+  background: #ffffff;
+  color: var(--text-dark);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  z-index: 10;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.letter-modal-close:hover {
+  transform: scale(1.1);
+  background: #fffdf8;
+}
+
+.full-letter-sheet {
+  background-color: var(--paper-cream);
+  background-image: 
+    linear-gradient(rgba(240, 230, 215, 0.15) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(252, 247, 238, 0.95) 100%);
+  background-size: 100% 28px, auto;
+  border-radius: 10px;
+  border: 1px solid var(--paper-border);
+  box-shadow: 0 25px 60px rgba(25, 20, 15, 0.35);
+  padding: 44px 48px 48px 48px;
+  position: relative;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.full-letter-sheet::-webkit-scrollbar {
+  width: 5px;
+}
+
+.full-letter-sheet::-webkit-scrollbar-thumb {
+  background: rgba(140, 110, 80, 0.25);
+  border-radius: 4px;
+}
+
+.sheet-deckle-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+  opacity: 0.8;
+}
+
+.letter-top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(197, 155, 88, 0.3);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.letter-badge {
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+.letter-date {
+  font-family: var(--font-editorial);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.letter-salutation {
+  font-family: var(--font-serif);
+  font-size: 1.95rem;
+  font-weight: 600;
+  color: var(--paper-text);
+  margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+
+.letter-body-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.letter-paragraph {
+  font-family: var(--font-editorial);
+  font-size: 1.22rem;
+  line-height: 1.72;
+  color: #38302c;
+  text-align: left;
+}
+
+.letter-closing-section {
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px dashed rgba(197, 155, 88, 0.4);
+}
+
+.letter-signature-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.signature-prefix {
+  font-family: var(--font-editorial);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.letter-signature {
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  line-height: 1;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --env-width: 380px;
+    --env-height: 255px;
+  }
+
+  .env-top-flap {
+    height: 145px;
+  }
+
+  .wax-seal-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+
+  .lace-doily {
+    width: 330px;
+    height: 285px;
+    left: calc(50% - 165px);
+  }
+
+  .half-letter-card {
+    width: 325px;
+    height: 195px;
+    left: calc(50% - 162.5px);
+    bottom: 25px;
+  }
+
+  .half-letter-inner {
+    padding: 18px 20px 16px 20px;
+  }
+
+  .half-salutation {
+    font-size: 1.35rem;
+  }
+
+  .half-preview-text {
+    font-size: 0.92rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .vellum-note {
+    width: 195px;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .polaroid-card {
+    width: 155px;
+    right: 10px;
+    bottom: 15px;
+  }
+
+  .polaroid-inner {
+    height: 125px;
+  }
+
+  .env-orchid {
+    width: 130px;
+    height: 125px;
+    bottom: -18px;
+    left: -8px;
+  }
+
+  .full-letter-sheet {
+    padding: 30px 24px 32px 24px;
+  }
+
+  .letter-salutation {
+    font-size: 1.6rem;
+  }
+
+  .letter-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --env-width: 330px;
+    --env-height: 220px;
+  }
+
+  .audio-control-container {
+    left: 10px;
+    top: 14px;
+  }
+
+  .pill-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .half-letter-card {
+    width: 290px;
+    left: calc(50% - 145px);
+  }
+}

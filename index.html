@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Heartfelt Apology | For You</title>
+  <meta name="description" content="A special heartfelt apology letter crafted with love, care, and sincerity.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <!-- Google Fonts: Luxury Serif, Editorial & Romantic Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-blush-pink">
+
+  <!-- Background Music Audio Element (User Song) -->
+  <audio id="bgAudio" src="assets/bg-song.mp3" loop autoplay preload="auto"></audio>
+
+  <!-- Ambient Sound / Music Toggle -->
+  <div class="audio-control-container">
+    <button id="audioToggleBtn" class="pill-btn audio-btn playing" title="Toggle background song">
+      <span class="audio-icon" id="audioIcon">🎵</span>
+      <span class="audio-label" id="audioLabel">Music: Playing</span>
+    </button>
+  </div>
+
+  <!-- Scroll Progress Floating Bar -->
+  <div class="scroll-progress-track">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Background Decorative Watermark ('love love love' in luxury cursive script) -->
+  <div class="bg-watermark-container" aria-hidden="true">
+    <div class="bg-watermark bg-watermark-top" id="bgWatermarkTop">love love love</div>
+    <div class="bg-watermark bg-watermark-bottom" id="bgWatermarkBottom">love love love</div>
+    <div class="bg-ambient-glow"></div>
+  </div>
+
+  <!-- Floating Falling Petals / Sparkles Canvas -->
+  <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+
+  <!-- Centered Interactive Stage -->
+  <div class="viewport-stage">
+    
+    <!-- Scroll Callout Hint -->
+    <div class="interaction-hint" id="interactionHint">
+      <div class="hint-mouse">
+        <div class="hint-wheel"></div>
+      </div>
+      <span class="hint-text">Scroll down to open</span>
+    </div>
+
+    <!-- 3D Pink Envelope Scene (Enlarged & Translucent) -->
+    <div class="envelope-scene">
+      <div class="envelope-box" id="envelopeBox">
+        
+        <!-- 1. Envelope Back Wall (Translucent pink vellum) -->
+        <div class="env-back">
+          <div class="env-interior-shading"></div>
+        </div>
+
+        <!-- 2. Inside Pocket Items (Strictly clipped at envelope bottom, peeking out at top only) -->
+        <div class="env-items-pocket" id="envItemsPocket">
+
+          <!-- Item A: Lace Heart Doily (Nestled in background) -->
+          <div class="tucked-item lace-doily" id="itemLace">
+            <img src="assets/lace-heart.svg" alt="Lace Paper Heart Doily" draggable="false" />
+          </div>
+
+          <!-- Item B: Translucent Green Vellum Note (Reference matching left card) -->
+          <div class="tucked-item vellum-note" id="itemVellum">
+            <div class="vellum-glass">
+              <div class="vellum-header">
+                <span class="vellum-contact" id="displayVellumContact">together@heart.com</span>
+                <span class="vellum-handle" id="displayVellumHandle">Always in my thoughts</span>
+              </div>
+              <div class="vellum-body">
+                <p id="displayVellumText">
+                  "I want you to know how deeply I appreciate your presence in my life. Every smile, every conversation means everything to me."
+                </p>
+              </div>
+              <div class="vellum-footer">
+                <span class="vellum-stamp">A GENTLE PROMISE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item C: Polaroid Photo Card (Reference matching right photo) -->
+          <div class="tucked-item polaroid-card" id="itemPolaroid">
+            <div class="polaroid-wrapper">
+              <div class="polaroid-clip"></div>
+              <div class="polaroid-inner">
+                <img id="displayPolaroidImg" src="assets/default-photo.svg" alt="A cherished memory" draggable="false" />
+              </div>
+              <div class="polaroid-caption" id="displayPolaroidCaption">
+                Cherished moments with you ✨
+              </div>
+            </div>
+          </div>
+
+          <!-- Item D: The Peeking Letter Card (Click directly to open full letter) -->
+          <div class="tucked-item half-letter-card" id="itemLetter" title="Click to read full letter">
+            <div class="half-letter-inner">
+              <div class="paper-deckle-edge"></div>
+              <div class="half-letter-header">
+                <span class="half-badge">SINCERE APOLOGY</span>
+                <span class="half-date" id="displayHalfDate">November 18, 2026</span>
+              </div>
+              <h2 class="half-salutation" id="displayHalfSalutation">Sanjay maa,</h2>
+              <p class="half-preview-text" id="displayHalfP1">
+                I am so sorry. Enna manichiru maa see I know how much you do for me enakkandi evlo pandra and evlo effort podra nu I know am sorry naan sonnadhu thappu...
+              </p>
+              
+              <!-- Click to unfold prompt pill -->
+              <div class="click-unfold-pill">
+                <span class="pill-sparkle">📜</span>
+                <span class="pill-text">Click to read full letter</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3. Envelope Front Pocket (Translucent pink vellum geometric folds with clip-paths) -->
+        <div class="env-front-pocket">
+          <div class="pocket-fold pocket-left"></div>
+          <div class="pocket-fold pocket-right"></div>
+          <div class="pocket-fold pocket-bottom"></div>
+        </div>
+
+        <!-- 4. Top Flap (Hinged at top:0, rotates 180deg backward to form open peak) -->
+        <div class="env-top-flap" id="envTopFlap">
+          <div class="flap-body">
+            <div class="flap-triangle-shape"></div>
+            <!-- Wax Seal mounted at flap apex -->
+            <div class="wax-seal-wrapper" id="waxSealWrapper" title="Click or scroll to open">
+              <img src="assets/wax-seal.svg" class="wax-seal-img" alt="Wax Seal" draggable="false" />
+              <span class="wax-seal-text">FOR YOU</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Pink Orchid Blossom (Anchored in bottom-left corner like reference) -->
+        <div class="env-orchid" id="envOrchid">
+          <img src="assets/orchid.svg" alt="Pink Orchid Flower" draggable="false" />
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tall Scroll Track to drive the animation smoothly -->
+  <div class="scroll-track" id="scrollTrack" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       SEPARATE FULL LETTER MODAL (Pure, heartfelt stationery sheet)
+       ========================================================================== -->
+  <div class="letter-modal-backdrop" id="fullLetterModal" role="dialog" aria-modal="true" aria-labelledby="displaySalutation">
+    <div class="letter-modal-container">
+      
+      <!-- Close Button -->
+      <button class="letter-modal-close" id="closeLetterModalBtn" aria-label="Close letter">&times;</button>
+      
+      <!-- Full Stationery Paper Sheet -->
+      <div class="full-letter-sheet">
+        <div class="sheet-deckle-edge"></div>
+        
+        <!-- Header Info -->
+        <div class="letter-top-info">
+          <span class="letter-badge">SINCERE APOLOGY</span>
+          <span class="letter-date" id="displayDate">November 18, 2026</span>
+        </div>
+
+        <!-- Recipient Salutation -->
+        <h1 class="letter-salutation" id="displaySalutation">Sanjay maa,</h1>
+
+        <!-- Full Body Paragraphs -->
+        <div class="letter-body-text">
+          <p class="letter-paragraph" id="displayP1">
+            I am so sorry. Enna manichiru maa see I know how much you do for me enakkandi evlo pandra and evlo effort podra nu I know am sorry naan sonnadhu thappu I should have not said. The thing is sometimes I feel a lil extra and expect you to handle me at times like that I have told you too epdi easy ah you can do nu at that time I don't want lecture or logic ah explanation la I just want to be comforted Sanjay maa adhu dha nee purinjikkala nu soltu unta sanda podren. Andha ID naan sonna nee eduppa nu oru kutty aasai nee pannala nu kaduppu aagi dha moonja thookunen. And am sorry for not holding ur hand when you asked me I should have done that soothu koluppu eduthu I did not do sorry adhukku. Nee soldra neraya vishyam hurt aagum Sanju maa sanda apo so ennala adha easy ah let go panna mudila cause I don't expec those from you cause I am very vulnerable with you and enakulla edho ellaru maariyu ivanu nammala ipdi solla maatan seyya maatan nu so when you do that it hurts me and hard for me to let go enna manichiru.
+          </p>
+          <p class="letter-paragraph" id="displayP2">
+            Enakku un kooda sanda poda theriyu unna katha theriyu konjo theriyu adikka theriyu aana unna vittu irukka therla Sanju maa. Yeah ego irukku neraya illa sollala but I don't hold onto things cause I have ego but because it hurt me cause my heart ku adhu unexpected. But it doesn't mean I've forgot what all you do for me Sanjay maa I love when you hold my hips while you talk to boys or when we walk, I love when you text me even when you are working or driving, I love when you text me you reached, I love when you send me cyut snaps of you and chunnu, I love when you smile when I make pee jokes, I love when you take bag from me no effort of urs go unnoticed by me Sanjay maa I always have eyes for you and you only na. I can't hate you Sanjay I can't unlove you I can't forget ur touch I can never na maa I just love you so much Sanjay.
+          </p>
+          <p class="letter-paragraph" id="displayP3">
+            Un kooda pesama irukkanum avan vantu pesatum eppome naan dha pesuren nu thonum but adhunala enna koranjiduven nu irukkum so why I always come for you just sometimes kutty ah I have aasai avan vandhu pesanum enna miss pannanum thonanum nu irukkum am not able to help it na ponnu na maa. Enna manichiru maa I never meant to make ur life harder. Ishtam maa nee enakku eppome ishtam na kashtam irukkum na. Idk if you will read or reply to this but ellam sollanum thonichu solten maa. I still always think of us cuddling when I eep na it helps me eep in peace my heart and body always aches for you Sanju maa. I love you Sanjay. 💗
+          </p>
+        </div>
+
+        <!-- Closing & Signature -->
+        <div class="letter-closing-section">
+          <div class="letter-signature-wrap">
+            <span class="signature-prefix">Always yours,</span>
+            <span class="letter-signature" id="displaySignature">With Love & Regret</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

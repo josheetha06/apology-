@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <defs>
+    <filter id="seal-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1e0b0b" flood-opacity="0.35" />
+    </filter>
+    <radialGradient id="wax-grad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#b83b3b" />
+      <stop offset="50%" stop-color="#8b1c1c" />
+      <stop offset="85%" stop-color="#631010" />
+      <stop offset="100%" stop-color="#450808" />
+    </radialGradient>
+    <radialGradient id="gold-foil-grad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fff1b8" />
+      <stop offset="40%" stop-color="#dfb15b" />
+      <stop offset="75%" stop-color="#ab7a28" />
+      <stop offset="100%" stop-color="#69460d" />
+    </radialGradient>
+  </defs>
+
+  <g filter="url(#seal-shadow)">
+    <!-- Organic dripping/pressed wax border -->
+    <path d="M 80 15 
+             C 98 12, 115 18, 128 32 
+             C 142 45, 149 65, 147 84 
+             C 145 105, 137 122, 122 135 
+             C 107 148, 86 150, 68 146 
+             C 48 142, 30 133, 20 116 
+             C 10 99, 12 78, 20 60 
+             C 28 42, 45 25, 65 17 
+             C 70 15, 75 14, 80 15 Z" 
+          fill="url(#wax-grad)" stroke="#420606" stroke-width="1.2" />
+
+    <!-- Inner pressed groove -->
+    <circle cx="80" cy="80" r="46" fill="#751515" stroke="#500909" stroke-width="2.5" />
+    <circle cx="80" cy="80" r="43" fill="none" stroke="#9e2828" stroke-width="1" stroke-dasharray="4,2" />
+
+    <!-- Embossed Heart Emblem in center -->
+    <path d="M 80 94 
+             C 77 90, 62 76, 62 67 
+             C 62 59, 68 54, 75 54 
+             C 79 54, 82 56, 84 59 
+             C 86 56, 89 54, 93 54 
+             C 100 54, 106 59, 106 67 
+             C 106 76, 91 90, 88 94 
+             C 86 96, 82 96, 80 94 Z" 
+          fill="url(#gold-foil-grad)" stroke="#ffe494" stroke-width="0.8" />
+          
+    <!-- Glossy highlight crescent -->
+    <path d="M 45 42 A 46 46 0 0 1 115 42 A 48 48 0 0 0 45 42 Z" fill="#ffffff" opacity="0.18" />
+  </g>
+</svg>
